@@ -19,8 +19,9 @@ exports.createStripeSession = async (req, res) => {
           quantity: 1,
         },
       ],
-      success_url: 'http://localhost:3000/payment-success',
-      cancel_url: 'http://localhost:3000/booking',
+      // ✅ use environment variable instead of hardcoding localhost
+      success_url: `${process.env.CLIENT_URL}/payment-success`,
+      cancel_url: `${process.env.CLIENT_URL}/order`,
     });
 
     res.json({ id: session.id });
